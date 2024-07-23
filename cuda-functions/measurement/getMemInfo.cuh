@@ -12,6 +12,12 @@ struct GpuMemoryInfo {
   size_t totalMemory;
 };
 
+// Memory usage is as follows:
+// kHigh    - 100% of available memory
+// kMedium  - 90% of available memory
+// kLow     - 80% of available memory
+enum class MemoryUsage { kHigh, kMedium, kLow };
+
 void printGpuMemoryInfo();
 
 // NOTE(GideokKim): This function uses the CUDA runtime API.
@@ -23,6 +29,9 @@ std::vector<GpuMemoryInfo> getGpuMemoryInfo();
 // std::vector<GpuMemoryInfo> getGpuMemoryInfo_v2();
 
 cudaError_t getActivatedGpuMemInfo(size_t* free_mem, size_t* total_mem);
+
+int64_t getAvailableGpuMemory(const GpuMemoryInfo& memoryInfo,
+                              MemoryUsage memoryUsage);
 
 // cudaError_t getMemInfo(size_t* free_mem, size_t* total_mem);
 }  // namespace measurement

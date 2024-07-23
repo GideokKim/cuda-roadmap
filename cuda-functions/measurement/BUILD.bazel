@@ -12,4 +12,5 @@ cuda_library(
     name = "getMemInfo",
     srcs = ["getMemInfo.cu"],
     hdrs = ["getMemInfo.cuh"],
+    deps = ["//cuda-functions/utils:helper"],
 )

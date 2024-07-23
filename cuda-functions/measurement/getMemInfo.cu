@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 
+#include "cuda-functions/utils/helper.cuh"
 #include "getMemInfo.cuh"
 
 namespace measurement {
@@ -86,4 +87,18 @@ cudaError_t getActivatedGpuMemInfo(size_t* free_mem, size_t* total_mem) {
   return cudaMemGetInfo(free_mem, total_mem);
 }
 
+int64_t getAvailableGpuMemory(const GpuMemoryInfo& memInfo,
+                              MemoryUsage memUsage) {
+  int64_t availableMemory =
+      static_cast<int64_t>(memInfo.freeMemory) -
+      utils::MinSystemMemory(static_cast<int64_t>(memInfo.freeMemory));
+  switch (memUsage) {
+    case MemoryUsage::kHigh:
+      return static_cast<int64_t>(availableMemory);
+    case MemoryUsage::kMedium:
+      return static_cast<int64_t>(availableMemory * 0.9);
+    case MemoryUsage::kLow:
+      return static_cast<int64_t>(availableMemory * 0.8);
+  }
+}
 }  // namespace measurement
