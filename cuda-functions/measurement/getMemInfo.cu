@@ -85,19 +85,5 @@ std::vector<GpuMemoryInfo> getGpuMemoryInfo() {
 cudaError_t getActivatedGpuMemInfo(size_t* free_mem, size_t* total_mem) {
   return cudaMemGetInfo(free_mem, total_mem);
 }
-// cudaError_t getMemInfo(size_t* free_mem, size_t* total_mem) {
-//   size_t alloc_size = 40000000000;
-//   int* huge_array;
 
-//   if (cudaMallocManaged(&huge_array, alloc_size) == cudaSuccess)
-//     if (cudaMemset(huge_array, 0, alloc_size) == cudaSuccess) {
-//       cudaError_t result = cudaMemGetInfo(free_mem, total_mem);
-//       cudaDeviceSynchronize();
-//       cudaFree(huge_array);
-//     } else {
-//       cudaFree(huge_array);
-//     }
-
-//   return result;
-// }
 }  // namespace measurement
