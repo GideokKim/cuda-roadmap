@@ -5,30 +5,50 @@
 
 namespace measurement {
 
-int printAllGpuMemInfo() {
-  int num_gpus;
-  cudaGetDeviceCount(&num_gpus);
+void printGpuMemoryInfo() {
+  std::vector<GpuMemoryInfo> gpuMemoryInfoList = getGpuMemoryInfo();
 
-  size_t free_mem, total_mem;
-  for (int gpu_id = 0; gpu_id < num_gpus; gpu_id++) {
+  for (size_t i = 0; i < gpuMemoryInfoList.size(); ++i) {
+    std::cout << "GPU ID " << i << ": " << std::endl;
+    std::cout << "  Total Memory: " << gpuMemoryInfoList[i].totalMemory
+              << " BYTE" << std::endl;
+    std::cout << "  Free Memory: " << gpuMemoryInfoList[i].freeMemory << " BYTE"
+              << std::endl;
+  }
+}
+
+std::vector<GpuMemoryInfo> getGpuMemoryInfo() {
+  int deviceCount;
+  cudaGetDeviceCount(&deviceCount);
+
+  std::vector<GpuMemoryInfo> memoryInfoList;
+
+  for (int gpu_id = 0; gpu_id < deviceCount; ++gpu_id) {
     cudaSetDevice(gpu_id);
     int id;
     cudaGetDevice(&id);
     std::cout << "Activated GPU ID: " << id << std::endl;
-    cudaError_t result = cudaMemGetInfo(&free_mem, &total_mem);
+
+    size_t freeMem = 0;
+    size_t totalMem = 0;
+
+    cudaError_t result = getActivatedGpuMemInfo(&freeMem, &totalMem);
     if (result == cudaSuccess) {
-      std::cout << "Free memory: " << free_mem << " BYTE" << std::endl;
-      std::cout << "Total memory: " << total_mem << " BYTE" << std::endl;
+      GpuMemoryInfo info{freeMem, totalMem};
+      memoryInfoList.push_back(info);
     } else {
       std::string cudaErrorString(cudaGetErrorString(result));
       std::cerr << "CUDA Error Code: " << result << std::endl;
       std::cerr << "CUDA Error Message: " << cudaErrorString << std::endl;
-      return static_cast<int>(result);
     }
   }
-  return 0;
+
+  return memoryInfoList;
 }
 
+cudaError_t getActivatedGpuMemInfo(size_t* free_mem, size_t* total_mem) {
+  return cudaMemGetInfo(free_mem, total_mem);
+}
 // cudaError_t getMemInfo(size_t* free_mem, size_t* total_mem) {
 //   size_t alloc_size = 40000000000;
 //   int* huge_array;

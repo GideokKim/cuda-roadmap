@@ -1,7 +1,7 @@
 #include "getMemInfo.cuh"
 
 int main() {
-  int result = measurement::printAllGpuMemInfo();
+  measurement::printGpuMemoryInfo();
 
   return 0;
 }
