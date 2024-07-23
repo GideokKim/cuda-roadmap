@@ -1,4 +1,6 @@
-#include <cuda.h>  // Included to use the CUDA driver API
+// TODO(GideokKim): The current build issue related to the CUDA driver API needs
+// to be resolved. Comment out until resolved.
+// #include <cuda.h>  // Included to use the CUDA driver API
 
 #include <iostream>
 #include <string>
@@ -48,35 +50,37 @@ std::vector<GpuMemoryInfo> getGpuMemoryInfo() {
   return memoryInfoList;
 }
 
-std::vector<GpuMemoryInfo> getGpuMemoryInfo_v2() {
-  cuInit(0);
+// TODO(GideokKim): The current build issue related to the CUDA driver API needs
+// to be resolved. Comment out until resolved.
+// std::vector<GpuMemoryInfo> getGpuMemoryInfo_v2() {
+//   cuInit(0);
 
-  int deviceCount;
-  cuDeviceGetCount(&deviceCount);
+//   int deviceCount;
+//   cuDeviceGetCount(&deviceCount);
 
-  std::vector<GpuMemoryInfo> memoryInfoList;
+//   std::vector<GpuMemoryInfo> memoryInfoList;
 
-  for (int i = 0; i < deviceCount; ++i) {
-    CUdevice device;
-    cuDeviceGet(&device, i);
+//   for (int i = 0; i < deviceCount; ++i) {
+//     CUdevice device;
+//     cuDeviceGet(&device, i);
 
-    size_t totalMem = 0;
-    cuDeviceTotalMem(&totalMem, device);
+//     size_t totalMem = 0;
+//     cuDeviceTotalMem(&totalMem, device);
 
-    size_t freeMem = 0;
-    size_t totalMem2 = 0;
-    CUcontext context;
-    cuCtxCreate(&context, 0, device);
-    cuMemGetInfo(&freeMem, &totalMem2);
-    cuCtxDestroy(context);
+//     size_t freeMem = 0;
+//     size_t totalMem2 = 0;
+//     CUcontext context;
+//     cuCtxCreate(&context, 0, device);
+//     cuMemGetInfo(&freeMem, &totalMem2);
+//     cuCtxDestroy(context);
 
-    GpuMemoryInfo info{freeMem, totalMem};
+//     GpuMemoryInfo info{freeMem, totalMem};
 
-    memoryInfoList.push_back(info);
-  }
+//     memoryInfoList.push_back(info);
+//   }
 
-  return memoryInfoList;
-}
+//   return memoryInfoList;
+// }
 
 cudaError_t getActivatedGpuMemInfo(size_t* free_mem, size_t* total_mem) {
   return cudaMemGetInfo(free_mem, total_mem);
