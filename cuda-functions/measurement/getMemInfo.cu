@@ -1,3 +1,5 @@
+#include <cuda.h>  // Included to use the CUDA driver API
+
 #include <iostream>
 #include <string>
 
@@ -41,6 +43,36 @@ std::vector<GpuMemoryInfo> getGpuMemoryInfo() {
       std::cerr << "CUDA Error Code: " << result << std::endl;
       std::cerr << "CUDA Error Message: " << cudaErrorString << std::endl;
     }
+  }
+
+  return memoryInfoList;
+}
+
+std::vector<GpuMemoryInfo> getGpuMemoryInfo_v2() {
+  cuInit(0);
+
+  int deviceCount;
+  cuDeviceGetCount(&deviceCount);
+
+  std::vector<GpuMemoryInfo> memoryInfoList;
+
+  for (int i = 0; i < deviceCount; ++i) {
+    CUdevice device;
+    cuDeviceGet(&device, i);
+
+    size_t totalMem = 0;
+    cuDeviceTotalMem(&totalMem, device);
+
+    size_t freeMem = 0;
+    size_t totalMem2 = 0;
+    CUcontext context;
+    cuCtxCreate(&context, 0, device);
+    cuMemGetInfo(&freeMem, &totalMem2);
+    cuCtxDestroy(context);
+
+    GpuMemoryInfo info{freeMem, totalMem};
+
+    memoryInfoList.push_back(info);
   }
 
   return memoryInfoList;

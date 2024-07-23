@@ -14,7 +14,11 @@ struct GpuMemoryInfo {
 
 void printGpuMemoryInfo();
 
+// NOTE(GideokKim): This function uses the CUDA runtime API.
 std::vector<GpuMemoryInfo> getGpuMemoryInfo();
+
+// NOTE(GideokKim): This function uses the CUDA driver API.
+std::vector<GpuMemoryInfo> getGpuMemoryInfo_v2();
 
 cudaError_t getActivatedGpuMemInfo(size_t* free_mem, size_t* total_mem);
 
