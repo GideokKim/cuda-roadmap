@@ -35,5 +35,7 @@ int64_t MinSystemMemory(int64_t available_memory) {
         int64_t{314572800},
         static_cast<int64_t>(available_memory * kMinSystemMemoryFraction));
   }
+
+  return min_system_memory;
 }
 }  // namespace utils
