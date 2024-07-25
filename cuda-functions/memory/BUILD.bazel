@@ -1,0 +1,15 @@
+load("@rules_cuda//cuda:defs.bzl", "cuda_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_binary(
+    name = "main",
+    srcs = ["main.cc"],
+    deps = [":asyncMemManager"],
+)
+
+cuda_library(
+    name = "asyncMemManager",
+    srcs = ["asyncMemManager.cu"],
+    hdrs = ["asyncMemManager.cuh"],
+)
