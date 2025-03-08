@@ -1,0 +1,34 @@
+load("@rules_cuda//cuda:defs.bzl", "cuda_library")
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+cuda_library(
+    name = "01_function_execution_space_specifiers",
+    srcs = ["01_function_execution_space_specifiers.cu"],
+    hdrs = ["01_function_execution_space_specifiers.cuh"],
+)
+
+cuda_library(
+    name = "cuda_memory_management",
+    srcs = ["cuda_memory_management.cu"],
+    hdrs = ["cuda_memory_management.cuh"],
+)
+
+cuda_library(
+    name = "kernel_launcher",
+    srcs = ["kernel_launcher.cu"],
+    hdrs = ["kernel_launcher.cuh"],
+    deps = [
+        ":01_function_execution_space_specifiers",
+    ]
+)
+
+cc_binary(
+    name = "main",
+    srcs = ["main.cpp"],
+    deps = [
+        ":cuda_memory_management",
+        ":kernel_launcher",
+    ],
+)
