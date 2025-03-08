@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "kernel.h"
+#include "kernel.cuh"
 
 #define CUDA_CHECK(expr)                                                     \
   do {                                                                       \

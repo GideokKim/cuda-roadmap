@@ -1,4 +1,4 @@
-#include "kernel.h"
+#include "kernel.cuh"
 
 int main() {
   launch();
