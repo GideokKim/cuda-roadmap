@@ -10,12 +10,6 @@ cuda_library(
 )
 
 cuda_library(
-    name = "cuda_memory_management",
-    srcs = ["cuda_memory_management.cu"],
-    hdrs = ["cuda_memory_management.cuh"],
-)
-
-cuda_library(
     name = "kernel_launcher",
     srcs = ["kernel_launcher.cu"],
     hdrs = ["kernel_launcher.cuh"],
@@ -28,7 +22,7 @@ cc_binary(
     name = "main",
     srcs = ["main.cpp"],
     deps = [
-        ":cuda_memory_management",
+        "//cuda-cpp-programming-guide-code-samples/utilities:cuda_memory_management",
         ":kernel_launcher",
     ],
 )

@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "cuda_memory_management.cuh"
+#include "cuda-cpp-programming-guide-code-samples/utilities/cuda_memory_management.cuh"
 #include "kernel_launcher.cuh"
 
 int main() {

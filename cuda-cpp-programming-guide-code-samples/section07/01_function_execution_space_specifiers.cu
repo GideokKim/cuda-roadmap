@@ -1,4 +1,4 @@
-#include "01_function_execution_space_secifiers.cuh"
+#include "01_function_execution_space_specifiers.cuh"
 
 // __host__와 __device__ 지정자를 사용하여 호스트와 디바이스 모두에서 실행
 // 가능한 함수
