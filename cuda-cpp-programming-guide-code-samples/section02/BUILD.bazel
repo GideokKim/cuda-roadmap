@@ -1,0 +1,28 @@
+load("@rules_cuda//cuda:defs.bzl", "cuda_library")
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+cuda_library(
+    name = "01_vector_add",
+    srcs = ["01_vector_add.cu"],
+    hdrs = ["01_vector_add.cuh"],
+)
+
+cuda_library(
+    name = "kernel_launcher",
+    srcs = ["kernel_launcher.cu"],
+    hdrs = ["kernel_launcher.cuh"],
+    deps = [
+        ":01_vector_add",
+    ]
+)
+
+cc_binary(
+    name = "main",
+    srcs = ["main.cpp"],
+    deps = [
+        "//cuda-cpp-programming-guide-code-samples/utilities:cuda_memory_management",
+        ":kernel_launcher",
+    ],
+)
