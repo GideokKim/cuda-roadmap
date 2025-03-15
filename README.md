@@ -2,6 +2,38 @@
 
 CUDA 학습을 위한 로드맵과 실습 예제 모음입니다.
 
+## 진행중인 학습 프로젝트
+
+### CUDA C++ Programming Guide 학습
+
+- 2025-03-08 ~ ing
+
+| 섹션 번호 | 섹션 제목                                       | 완료 날짜 | 상태 |
+|---------|------------------------------------------------|-----------|------|
+| 1       | Introduction                                   | 2025-03-08 | ✅ |
+| 2       | Programming Model                              | 2025-03-11 | ✅ |
+| 3       | Programming Interface                          |            | 🚧 |
+| 4       | Hardware Implementation                        |            | ❌ |
+| 5       | Performance Guidelines                         |            | ❌ |
+| 6       | CUDA-Enabled GPUs                              | 2025-03-15 | ✅ |
+| 7       | C++ Language Extensions                        |            | 🚧 |
+| 8       | Cooperative Groups                             |            | ❌ |
+| 9       | CUDA Dynamic Parallelism                       |            | ❌ |
+| 10      | Virtual Memory Management                      |            | ❌ |
+| 11      | Stream Ordered Memory Allocator                |            | ❌ |
+| 12      | Graph Memory Nodes                             |            | ❌ |
+| 13      | Mathematical Functions                         |            | ❌ |
+| 14      | C++ Language Support                           |            | ❌ |
+| 15      | Texture Fetching                               |            | ❌ |
+| 16      | Compute Capabilities                           |            | ❌ |
+| 17      | Driver API                                     |            | ❌ |
+| 18      | CUDA Environment Variables                    |            | ❌ |
+| 19      | Unified Memory Programming                     |            | ❌ |
+| 20      | Lazy Loading                                   |            | ❌ |
+| 21      | Extended GPU Memory                            |            | ❌ |
+| 22      | Notices                                        |            | ❌ |
+
+
 ## 🗺️ CUDA 학습 로드맵
 
 ### 1. CUDA 기초
