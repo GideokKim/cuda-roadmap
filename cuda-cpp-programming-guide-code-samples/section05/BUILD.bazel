@@ -1,0 +1,16 @@
+load("@rules_cuda//cuda:defs.bzl", "cuda_library")
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+cuda_library(
+    name = "02_occupancy_calculator",
+    srcs = ["02_occupancy_calculator.cu"],
+    hdrs = ["02_occupancy_calculator.cuh"],
+)
+
+cc_binary(
+    name = "main",
+    srcs = ["main.cpp"],
+    deps = [":02_occupancy_calculator"],
+)
