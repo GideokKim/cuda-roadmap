@@ -13,7 +13,7 @@ CUDA 학습을 위한 로드맵과 실습 예제 모음입니다.
 | 1       | Introduction                                   | 2025-03-08 | ✅ |
 | 2       | Programming Model                              | 2025-03-11 | ✅ |
 | 3       | Programming Interface                          |            | 🚧 |
-| 4       | Hardware Implementation                        |            | ❌ |
+| 4       | Hardware Implementation                        | 2025-03-18 | ✅ |
 | 5       | Performance Guidelines                         |            | ❌ |
 | 6       | CUDA-Enabled GPUs                              | 2025-03-15 | ✅ |
 | 7       | C++ Language Extensions                        |            | 🚧 |
